@@ -1,3 +1,7 @@
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,6 +18,14 @@ public class RP extends javax.swing.JFrame {
      */
     public RP() {
         initComponents();
+        this.setSize(1170,680);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension dim = tk.getScreenSize(); 
+        int xPos = (dim.width / 2) - (this.getWidth() / 2);
+        int yPos = (dim.height / 2) - (this.getHeight() / 2);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+
     }
 
     /**
@@ -25,6 +37,17 @@ public class RP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -57,7 +80,6 @@ public class RP extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jToolBar1 = new javax.swing.JToolBar();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
@@ -69,7 +91,60 @@ public class RP extends javax.swing.JFrame {
         jTextArea3 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
+
+        jFrame1.setMinimumSize(new java.awt.Dimension(968, 537));
+        jFrame1.setPreferredSize(new java.awt.Dimension(962, 541));
+        jFrame1.setResizable(false);
+        jFrame1.getContentPane().setLayout(null);
+        jFrame1.getContentPane().add(jLabel22);
+        jLabel22.setBounds(0, 0, 0, 497);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jFrame1.getContentPane().add(jLabel24);
+        jLabel24.setBounds(60, 190, 260, 20);
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel25.setText("Course 2:");
+        jFrame1.getContentPane().add(jLabel25);
+        jLabel25.setBounds(60, 170, 80, 20);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel26.setText("Course 3:");
+        jFrame1.getContentPane().add(jLabel26);
+        jLabel26.setBounds(60, 270, 80, 20);
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel27.setText("Course 4:");
+        jFrame1.getContentPane().add(jLabel27);
+        jLabel27.setBounds(60, 380, 80, 20);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel28.setText("Course 1:");
+        jFrame1.getContentPane().add(jLabel28);
+        jLabel28.setBounds(60, 60, 80, 20);
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jFrame1.getContentPane().add(jLabel29);
+        jLabel29.setBounds(60, 290, 260, 20);
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jFrame1.getContentPane().add(jLabel30);
+        jLabel30.setBounds(60, 400, 260, 20);
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jFrame1.getContentPane().add(jLabel31);
+        jLabel31.setBounds(60, 80, 260, 20);
+
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backroundbest.png"))); // NOI18N
+        jLabel23.setText("jLabel23");
+        jFrame1.getContentPane().add(jLabel23);
+        jLabel23.setBounds(0, 0, 960, 540);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -139,31 +214,38 @@ public class RP extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Last Name:");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(40, 100, 70, 20);
+        jLabel15.setBounds(20, 100, 70, 20);
 
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(250, 100, 70, 20);
+        jTextField1.setBounds(250, 100, 90, 20);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("First Name:");
         getContentPane().add(jLabel16);
         jLabel16.setBounds(180, 100, 70, 20);
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(110, 100, 60, 20);
+        jTextField2.setBounds(90, 100, 80, 20);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Calculate Average");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(30, 580, 130, 23);
 
@@ -172,37 +254,41 @@ public class RP extends javax.swing.JFrame {
         getContentPane().add(jLabel17);
         jLabel17.setBounds(180, 580, 50, 20);
 
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(400, 270, 60, 20);
+        jTextField3.setBounds(400, 270, 60, 30);
 
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(40, 370, 230, 20);
+        jTextField4.setBounds(40, 370, 230, 30);
 
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(40, 480, 230, 20);
+        jTextField5.setBounds(40, 480, 230, 30);
 
+        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField6);
-        jTextField6.setBounds(40, 160, 230, 20);
+        jTextField6.setBounds(40, 160, 230, 30);
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,44 +296,48 @@ public class RP extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField7);
-        jTextField7.setBounds(240, 580, 90, 20);
+        jTextField7.setBounds(240, 570, 90, 30);
 
+        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField8);
-        jTextField8.setBounds(400, 380, 60, 20);
+        jTextField8.setBounds(400, 380, 60, 30);
 
+        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(400, 490, 60, 20);
+        jTextField9.setBounds(400, 490, 60, 30);
 
+        jTextField10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField10);
-        jTextField10.setBounds(400, 160, 60, 20);
+        jTextField10.setBounds(400, 160, 60, 30);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Report Card Pro");
         getContentPane().add(jLabel18);
         jLabel18.setBounds(30, 20, 120, 20);
 
+        jTextField11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField11);
-        jTextField11.setBounds(40, 270, 230, 20);
+        jTextField11.setBounds(40, 270, 230, 30);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel19.setText("Student Database");
@@ -264,10 +354,6 @@ public class RP extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(1010, 570, 120, 23);
 
-        jToolBar1.setRollover(true);
-        getContentPane().add(jToolBar1);
-        jToolBar1.setBounds(120, 60, 410, 20);
-
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel20.setText("File");
         getContentPane().add(jLabel20);
@@ -277,8 +363,10 @@ public class RP extends javax.swing.JFrame {
         jLabel21.setText("Search:");
         getContentPane().add(jLabel21);
         jLabel21.setBounds(960, 130, 50, 20);
+
+        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(jTextField12);
-        jTextField12.setBounds(960, 150, 170, 20);
+        jTextField12.setBounds(960, 150, 170, 21);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -308,9 +396,19 @@ public class RP extends javax.swing.JFrame {
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(530, 160, 410, 70);
 
+        jToggleButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jToggleButton1.setText("Print");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButton1);
+        jToggleButton1.setBounds(70, 60, 110, 23);
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Untitled.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1141, 648);
+        jLabel2.setBounds(0, 0, 1141, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -359,6 +457,20 @@ public class RP extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       float num1, num2, num3, num4,average;
+        num1 = Float.parseFloat(jTextField10.getText());
+    num2 = Float.parseFloat(jTextField3.getText());
+num3 = Float.parseFloat(jTextField8.getText());
+num4 = Float.parseFloat(jTextField9.getText());
+        average = (num1+num2+num3+num4)/4;
+        jTextField7.setText(String.valueOf(average));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+       
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+                                                                        
     /**
      * @param args the command line arguments
      */
@@ -397,6 +509,7 @@ public class RP extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -411,7 +524,17 @@ public class RP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -438,6 +561,6 @@ public class RP extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
