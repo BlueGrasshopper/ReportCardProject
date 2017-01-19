@@ -1,6 +1,20 @@
 
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import javax.imageio.ImageIO;
+import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -11,7 +25,27 @@ import java.awt.Toolkit;
  *
  * @author shais8602
  */
+
 public class RP extends javax.swing.JFrame {
+    
+private void captureComponent(Component jFrame1) {
+		Rectangle rect = jFrame1.getBounds();
+		
+		try {
+			String format = "png";
+			String fileName = jFrame1.getName() + "." + format;
+			BufferedImage captureImage = 
+					new BufferedImage(rect.width-207, rect.height-87, 
+										BufferedImage.TYPE_INT_ARGB);
+			jFrame1.paint(captureImage.getGraphics());
+			
+			ImageIO.write(captureImage, format, new File(fileName));
+			
+			System.out.printf("The screenshot of %s was saved!", jFrame1.getName());
+		} catch (IOException ex) {
+			System.err.println(ex);
+		}		
+	}
 
     /**
      * Creates new form RP
@@ -37,17 +71,6 @@ public class RP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -80,71 +103,14 @@ public class RP extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jTextArea5 = new javax.swing.JTextArea();
+        jTextArea6 = new javax.swing.JTextArea();
+        jTextArea7 = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-
-        jFrame1.setMinimumSize(new java.awt.Dimension(968, 537));
-        jFrame1.setPreferredSize(new java.awt.Dimension(962, 541));
-        jFrame1.setResizable(false);
-        jFrame1.getContentPane().setLayout(null);
-        jFrame1.getContentPane().add(jLabel22);
-        jLabel22.setBounds(0, 0, 0, 497);
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jFrame1.getContentPane().add(jLabel24);
-        jLabel24.setBounds(60, 190, 260, 20);
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel25.setText("Course 2:");
-        jFrame1.getContentPane().add(jLabel25);
-        jLabel25.setBounds(60, 170, 80, 20);
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel26.setText("Course 3:");
-        jFrame1.getContentPane().add(jLabel26);
-        jLabel26.setBounds(60, 270, 80, 20);
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel27.setText("Course 4:");
-        jFrame1.getContentPane().add(jLabel27);
-        jLabel27.setBounds(60, 380, 80, 20);
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel28.setText("Course 1:");
-        jFrame1.getContentPane().add(jLabel28);
-        jLabel28.setBounds(60, 60, 80, 20);
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jFrame1.getContentPane().add(jLabel29);
-        jLabel29.setBounds(60, 290, 260, 20);
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jFrame1.getContentPane().add(jLabel30);
-        jLabel30.setBounds(60, 400, 260, 20);
-
-        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jFrame1.getContentPane().add(jLabel31);
-        jLabel31.setBounds(60, 80, 260, 20);
-
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backroundbest.png"))); // NOI18N
-        jLabel23.setText("jLabel23");
-        jFrame1.getContentPane().add(jLabel23);
-        jLabel23.setBounds(0, 0, 960, 540);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -217,6 +183,7 @@ public class RP extends javax.swing.JFrame {
         jLabel15.setBounds(20, 100, 70, 20);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -231,6 +198,7 @@ public class RP extends javax.swing.JFrame {
         jLabel16.setBounds(180, 100, 70, 20);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -255,6 +223,7 @@ public class RP extends javax.swing.JFrame {
         jLabel17.setBounds(180, 580, 50, 20);
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -264,6 +233,7 @@ public class RP extends javax.swing.JFrame {
         jTextField3.setBounds(400, 270, 60, 30);
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -273,6 +243,7 @@ public class RP extends javax.swing.JFrame {
         jTextField4.setBounds(40, 370, 230, 30);
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -282,6 +253,7 @@ public class RP extends javax.swing.JFrame {
         jTextField5.setBounds(40, 480, 230, 30);
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -299,6 +271,7 @@ public class RP extends javax.swing.JFrame {
         jTextField7.setBounds(240, 570, 90, 30);
 
         jTextField8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -308,6 +281,7 @@ public class RP extends javax.swing.JFrame {
         jTextField8.setBounds(400, 380, 60, 30);
 
         jTextField9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -317,6 +291,7 @@ public class RP extends javax.swing.JFrame {
         jTextField9.setBounds(400, 490, 60, 30);
 
         jTextField10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
@@ -331,6 +306,7 @@ public class RP extends javax.swing.JFrame {
         jLabel18.setBounds(30, 20, 120, 20);
 
         jTextField11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);
@@ -346,6 +322,11 @@ public class RP extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Add Student");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(890, 570, 110, 23);
 
@@ -354,47 +335,20 @@ public class RP extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(1010, 570, 120, 23);
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel20.setText("File");
-        getContentPane().add(jLabel20);
-        jLabel20.setBounds(30, 60, 80, 20);
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel21.setText("Search:");
-        getContentPane().add(jLabel21);
-        jLabel21.setBounds(960, 130, 50, 20);
-
         jTextField12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField12);
-        jTextField12.setBounds(960, 150, 170, 21);
+        jTextField12.setBounds(960, 160, 170, 21);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(530, 270, 410, 70);
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(530, 380, 410, 70);
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
-
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(530, 490, 410, 70);
-
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
-
-        getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(530, 160, 410, 70);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jTextArea1);
+        jTextArea1.setBounds(530, 380, 410, 60);
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jToggleButton1.setText("Print");
@@ -404,7 +358,34 @@ public class RP extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(70, 60, 110, 23);
+        jToggleButton1.setBounds(360, 580, 110, 23);
+
+        jTextArea5.setColumns(20);
+        jTextArea5.setRows(5);
+        jTextArea5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jTextArea5);
+        jTextArea5.setBounds(530, 490, 410, 60);
+
+        jTextArea6.setColumns(20);
+        jTextArea6.setRows(5);
+        jTextArea6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jTextArea6);
+        jTextArea6.setBounds(530, 160, 410, 60);
+
+        jTextArea7.setColumns(20);
+        jTextArea7.setRows(5);
+        jTextArea7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jTextArea7);
+        jTextArea7.setBounds(530, 270, 410, 60);
+
+        jButton3.setText("Search:");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(960, 130, 69, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Untitled.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -468,8 +449,49 @@ num4 = Float.parseFloat(jTextField9.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       
+        captureComponent(this);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String lastname;
+        lastname = (jTextField2.getText());  
+        String name = (jTextField1.getText());
+        
+    String outFileName = lastname;
+              File outFile = new File(outFileName);
+        try (PrintStream out = new PrintStream(outFile)) {
+            float num1 = Float.parseFloat(jTextField10.getText());
+            float num2 = Float.parseFloat(jTextField3.getText());
+            float num3 = Float.parseFloat(jTextField8.getText());
+            float num4 = Float.parseFloat(jTextField9.getText());
+            String course1 = (jTextField6.getText());
+            String course2 = (jTextField11.getText());
+            String course3 = (jTextField4.getText());
+            String course4 = (jTextField5.getText());
+            float average = Float.parseFloat(jTextField7.getText());
+            out.println(lastname);
+            out.println(name);
+           out.println(num1);            
+            out.println(num2);
+            out.println(num3);
+            out.println(num4);
+            out.println(course1);
+            out.println(course2);
+            out.println(course3);
+            out.println(course4);
+            out.println(average);
+        } catch (FileNotFoundException ex) {
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
                                                                         
     /**
      * @param args the command line arguments
@@ -508,8 +530,8 @@ num4 = Float.parseFloat(jTextField9.getText());
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -522,33 +544,17 @@ num4 = Float.parseFloat(jTextField9.getText());
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
+    private javax.swing.JTextArea jTextArea6;
+    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
