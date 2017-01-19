@@ -1,5 +1,6 @@
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -11,6 +12,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,7 +42,7 @@ private void captureComponent(Component jFrame1) {
 			jFrame1.paint(captureImage.getGraphics());
 			
 			ImageIO.write(captureImage, format, new File(fileName));
-			
+			Desktop.getDesktop().print(new File(fileName));
 			System.out.printf("The screenshot of %s was saved!", jFrame1.getName());
 		} catch (IOException ex) {
 			System.err.println(ex);
@@ -59,6 +61,7 @@ private void captureComponent(Component jFrame1) {
         int yPos = (dim.height / 2) - (this.getHeight() / 2);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+     
 
     }
 
@@ -385,7 +388,7 @@ private void captureComponent(Component jFrame1) {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(960, 130, 69, 23);
+        jButton3.setBounds(960, 130, 80, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Untitled.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -457,17 +460,29 @@ num4 = Float.parseFloat(jTextField9.getText());
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    try {
+        String search = (jTextField12.getText());
+    
+            String inFileName = search;
+            File inFile = new File(inFileName);
+            Scanner in = new Scanner(inFile);
+            String lastnum = in.next();
+            jTextField2.setText(lastnum);
+            String name = in.next();
+            jTextField1.setText(name);
+            
+    } catch (FileNotFoundException ex) {
+    }
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String lastname;
-        lastname = (jTextField2.getText());  
-        String name = (jTextField1.getText());
-        
+       String lastname = (jTextField2.getText());  
+        String name = (jTextField1.getText());        
     String outFileName = lastname;
               File outFile = new File(outFileName);
         try (PrintStream out = new PrintStream(outFile)) {
+            // we need to set a variable for each of the textfield
             float num1 = Float.parseFloat(jTextField10.getText());
             float num2 = Float.parseFloat(jTextField3.getText());
             float num3 = Float.parseFloat(jTextField8.getText());
@@ -476,7 +491,11 @@ num4 = Float.parseFloat(jTextField9.getText());
             String course2 = (jTextField11.getText());
             String course3 = (jTextField4.getText());
             String course4 = (jTextField5.getText());
-            float average = Float.parseFloat(jTextField7.getText());
+            String comment1 = (jTextArea6.getText());
+            String comment2 = (jTextArea7.getText());
+            String comment3 = (jTextArea1.getText());
+            String comment4 = (jTextArea5.getText());
+      // Now we print all of it      
             out.println(lastname);
             out.println(name);
            out.println(num1);            
@@ -487,7 +506,11 @@ num4 = Float.parseFloat(jTextField9.getText());
             out.println(course2);
             out.println(course3);
             out.println(course4);
-            out.println(average);
+            out.println((num1+num2+num3+num4)/4);
+            out.println(comment1);
+            out.println(comment2);
+            out.println(comment3);
+           out.println(comment4);
         } catch (FileNotFoundException ex) {
         }
 
@@ -521,9 +544,11 @@ num4 = Float.parseFloat(jTextField9.getText());
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RP().setVisible(true);
+                
             }
         });
     }
