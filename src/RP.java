@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +55,7 @@ private void captureComponent(Component jFrame1) {
      * Creates new form RP
      */
     public RP() {
+        // This is preety much setting the demsenions in which we want it to open as
         initComponents();
         this.setSize(1170,680);
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -442,11 +445,13 @@ private void captureComponent(Component jFrame1) {
     }//GEN-LAST:event_jTextField11ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       float num1, num2, num3, num4,average;
+       // we set variables and got the numbers from the textfield
+        float num1, num2, num3, num4,average;
         num1 = Float.parseFloat(jTextField10.getText());
     num2 = Float.parseFloat(jTextField3.getText());
 num3 = Float.parseFloat(jTextField8.getText());
 num4 = Float.parseFloat(jTextField9.getText());
+// by pressing the average button it added up all the numbers, dividing by 4 and set it to average textfield
         average = (num1+num2+num3+num4)/4;
         jTextField7.setText(String.valueOf(average));
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -467,34 +472,119 @@ num4 = Float.parseFloat(jTextField9.getText());
             File inFile = new File(inFileName);
             Scanner in = new Scanner(inFile);
             String lastnum = in.next();
-            jTextField2.setText(lastnum);
+            jTextField2.setText(lastnum);               
             String name = in.next();
             jTextField1.setText(name);
+            String num1 = in.next();
+          jTextField10.setText(num1);     
+           String num2 = in.next();
+           jTextField3.setText(num2);
+           String num3 = in.next();
+            jTextField8.setText(num3);
+           String num4 = in.next();
+           jTextField9.setText(num4);
+            String course1 = in.next();
+            jTextField6.setText(course1);
+            String cousre2 = in.next();
+          jTextField11.setText(cousre2);
+            String cousre3 = in.next();
+           jTextField4.setText(cousre3);
+           String cousre4 = in.next();
+            jTextField5.setText(cousre4);
+           String average = in.next();
+            jTextField7.setText(String.valueOf(average));
+            String comment1 = in.next();
+            jTextArea6.setText(comment1);
+            String comment2 = in.next();
+            jTextArea7.setText(comment2);
+            String comment3 = in.next();
+            jTextArea1.setText(comment3);
+            String comment4 = in.next();
+            jTextArea5.setText(comment4);
             
     } catch (FileNotFoundException ex) {
     }
        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    int num1;
+int num2;
+int num3;
+int num4;
+String course1,course2,course3,course4;
+String comment1,comment2,comment3,comment4;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       String lastname = (jTextField2.getText());  
-        String name = (jTextField1.getText());        
-    String outFileName = lastname;
+       // First we need to determine the last name and name to make a file with that certain name 
+        // this will make it easier to find 
+        String lastname = (jTextField2.getText());  
+        String name = (jTextField1.getText());  
+        String names = (name+" "+lastname);
+  // Now we make that certain file inorder to store information
+        String outFileName = names;
               File outFile = new File(outFileName);
         try (PrintStream out = new PrintStream(outFile)) {
             // we need to set a variable for each of the textfield
-            float num1 = Float.parseFloat(jTextField10.getText());
-            float num2 = Float.parseFloat(jTextField3.getText());
-            float num3 = Float.parseFloat(jTextField8.getText());
-            float num4 = Float.parseFloat(jTextField9.getText());
-            String course1 = (jTextField6.getText());
-            String course2 = (jTextField11.getText());
-            String course3 = (jTextField4.getText());
-            String course4 = (jTextField5.getText());
-            String comment1 = (jTextArea6.getText());
-            String comment2 = (jTextArea7.getText());
-            String comment3 = (jTextArea1.getText());
-            String comment4 = (jTextArea5.getText());
+      if(!jTextField10.getText().isEmpty()){
+        num1 = Integer.parseInt(jTextField10.getText());
+}else{
+          num1 = 0;
+      }
+      if(!jTextField3.getText().isEmpty()){
+        num2 = Integer.parseInt(jTextField3.getText());
+}else{
+          num2 = 0;
+      }
+         if(!jTextField8.getText().isEmpty()){
+        num3 = Integer.parseInt(jTextField8.getText());
+}else{
+          num3 = 0;
+      }
+ if(!jTextField9.getText().isEmpty()){
+        num4 = Integer.parseInt(jTextField9.getText());
+}else{
+          num4 = 0;
+      }
+ if(!jTextField6.getText().isEmpty()){
+     course1 = (jTextField6.getText());
+ }else{
+     course1 = null;
+ }
+ if(!jTextField11.getText().isEmpty()){
+     course2 = (jTextField11.getText());
+ }else{
+     course2 = null;
+ }
+  if(!jTextField4.getText().isEmpty()){
+     course3 = (jTextField3.getText());
+ }else{
+     course3 = null;
+ }
+  if(!jTextField5.getText().isEmpty()){
+     course4 = (jTextField5.getText());
+ }else{
+     course4 = null;
+ }
+  if(!jTextArea6.getText().isEmpty()){
+     comment1 = (jTextArea6.getText());
+ }else{
+     comment1 = null;
+  }
+          if(!jTextArea7.getText().isEmpty()){
+     comment2 = (jTextArea7.getText());
+     
+ }else{
+     comment2 = null;
+          }
+          if(!jTextArea1.getText().isEmpty()){
+     comment3 = (jTextArea1.getText());
+ }else{
+     comment3 = null;
+          }
+      if(!jTextArea5.getText().isEmpty()){
+     comment4 = (jTextArea5.getText());
+ }else{
+     comment4 = null;
+      }  
       // Now we print all of it      
             out.println(lastname);
             out.println(name);
@@ -513,6 +603,7 @@ num4 = Float.parseFloat(jTextField9.getText());
            out.println(comment4);
         } catch (FileNotFoundException ex) {
         }
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
                                                                         
