@@ -5,18 +5,16 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+
 
 
 
@@ -24,49 +22,64 @@ import java.util.logging.Logger;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author shais8602
  */
-
 public class RP extends javax.swing.JFrame {
-    
-private void captureComponent(Component jFrame1) {
-		Rectangle rect = jFrame1.getBounds();
-		
-		try {
-			String format = "png";
-			String fileName = jFrame1.getName() + "." + format;
-			BufferedImage captureImage = 
-					new BufferedImage(rect.width-207, rect.height-87, 
-										BufferedImage.TYPE_INT_ARGB);
-			jFrame1.paint(captureImage.getGraphics());
-			
-			ImageIO.write(captureImage, format, new File(fileName));
-			Desktop.getDesktop().print(new File(fileName));
-			System.out.printf("The screenshot of %s was saved!", jFrame1.getName());
-		} catch (IOException ex) {
-			System.err.println(ex);
-		}		
-	}
+File database;
+    Scanner indata;
+    PrintStream outdata;
+
+
+    private void captureComponent(Component jFrame1) {
+        // This is creating a screenshot for the frame1 and then it opens the print menu
+        Rectangle rect = jFrame1.getBounds();
+
+        try {
+            String format = "png";
+            String fileName = jFrame1.getName() + "." + format;
+            BufferedImage captureImage =
+                    new BufferedImage(rect.width - 207, rect.height - 87,
+                    BufferedImage.TYPE_INT_ARGB);
+            jFrame1.paint(captureImage.getGraphics());
+
+            ImageIO.write(captureImage, format, new File(fileName));
+            Desktop.getDesktop().print(new File(fileName));
+            System.out.printf("The screenshot of %s was saved!", jFrame1.getName());
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
 
     /**
      * Creates new form RP
      */
-    public RP() {
+    public RP() throws FileNotFoundException {
         // This is preety much setting the demsenions in which we want it to open as
         initComponents();
-        this.setSize(1170,680);
+        this.setSize(1170, 680);
         Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension dim = tk.getScreenSize(); 
+        Dimension dim = tk.getScreenSize();
         int xPos = (dim.width / 2) - (this.getWidth() / 2);
         int yPos = (dim.height / 2) - (this.getHeight() / 2);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-     
+        database = new File("database");
+        outdata = new PrintStream(new FileOutputStream(database, true));
+        indata = new Scanner(database);
+        
+        loadFiles();
 
     }
+     private void loadFiles() {
+        if (indata.hasNext()) {
+            jTextArea2.append(indata.next());
+        } else {
+            System.out.println("no student files in database");
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +90,8 @@ private void captureComponent(Component jFrame1) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -116,7 +131,15 @@ private void captureComponent(Component jFrame1) {
         jTextArea6 = new javax.swing.JTextArea();
         jTextArea7 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Swagpic.png"))); // NOI18N
+        jLabel20.setText("jLabel20");
+        jFrame1.getContentPane().add(jLabel20, java.awt.BorderLayout.PAGE_START);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -186,7 +209,7 @@ private void captureComponent(Component jFrame1) {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Last Name:");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(20, 100, 70, 20);
+        jLabel15.setBounds(190, 100, 70, 20);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -196,12 +219,12 @@ private void captureComponent(Component jFrame1) {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(250, 100, 90, 20);
+        jTextField1.setBounds(90, 100, 90, 20);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("First Name:");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(180, 100, 70, 20);
+        jLabel16.setBounds(20, 100, 70, 20);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -211,7 +234,7 @@ private void captureComponent(Component jFrame1) {
             }
         });
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(90, 100, 80, 20);
+        jTextField2.setBounds(260, 100, 80, 20);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Calculate Average");
@@ -338,6 +361,11 @@ private void captureComponent(Component jFrame1) {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton4.setText("Delete Student");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4);
         jButton4.setBounds(1010, 570, 120, 23);
 
@@ -348,7 +376,7 @@ private void captureComponent(Component jFrame1) {
             }
         });
         getContentPane().add(jTextField12);
-        jTextField12.setBounds(960, 160, 170, 21);
+        jTextField12.setBounds(960, 160, 170, 30);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -392,6 +420,33 @@ private void captureComponent(Component jFrame1) {
         });
         getContentPane().add(jButton3);
         jButton3.setBounds(960, 130, 80, 23);
+
+        jButton5.setText("Help");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(1020, 60, 90, 23);
+
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane1.setViewportView(jTextArea2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(960, 200, 168, 350);
+
+        jButton6.setText("Save");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(510, 580, 90, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Untitled.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -445,14 +500,30 @@ private void captureComponent(Component jFrame1) {
     }//GEN-LAST:event_jTextField11ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       // we set variables and got the numbers from the textfield
-        float num1, num2, num3, num4,average;
-        num1 = Float.parseFloat(jTextField10.getText());
-    num2 = Float.parseFloat(jTextField3.getText());
-num3 = Float.parseFloat(jTextField8.getText());
-num4 = Float.parseFloat(jTextField9.getText());
+        // we set variables and got the numbers from the textfield
+        int average;
+        if (!jTextField10.getText().isEmpty()) {
+            num1 = Integer.parseInt(jTextField10.getText());
+        } else {
+            num1 = 0;
+        }
+        if (!jTextField3.getText().isEmpty()) {
+            num2 = Integer.parseInt(jTextField3.getText());
+        } else {
+            num2 = 0;
+        }
+        if (!jTextField8.getText().isEmpty()) {
+            num3 = Integer.parseInt(jTextField8.getText());
+        } else {
+            num3 = 0;
+        }
+        if (!jTextField9.getText().isEmpty()) {
+            num4 = Integer.parseInt(jTextField9.getText());
+        } else {
+            num4 = 0;
+        }
 // by pressing the average button it added up all the numbers, dividing by 4 and set it to average textfield
-        average = (num1+num2+num3+num4)/4;
+        average = (num1 + num2 + num3 + num4) / 4;
         jTextField7.setText(String.valueOf(average));
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -465,33 +536,33 @@ num4 = Float.parseFloat(jTextField9.getText());
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    try {
-        String search = (jTextField12.getText());
-    
+        try {
+            String search = (jTextField12.getText());
+
             String inFileName = search;
             File inFile = new File(inFileName);
             Scanner in = new Scanner(inFile);
             String lastnum = in.next();
-            jTextField2.setText(lastnum);               
+            jTextField2.setText(lastnum);
             String name = in.next();
             jTextField1.setText(name);
             String num1 = in.next();
-          jTextField10.setText(num1);     
-           String num2 = in.next();
-           jTextField3.setText(num2);
-           String num3 = in.next();
+            jTextField10.setText(num1);
+            String num2 = in.next();
+            jTextField3.setText(num2);
+            String num3 = in.next();
             jTextField8.setText(num3);
-           String num4 = in.next();
-           jTextField9.setText(num4);
+            String num4 = in.next();
+            jTextField9.setText(num4);
             String course1 = in.next();
             jTextField6.setText(course1);
             String cousre2 = in.next();
-          jTextField11.setText(cousre2);
+            jTextField11.setText(cousre2);
             String cousre3 = in.next();
-           jTextField4.setText(cousre3);
-           String cousre4 = in.next();
+            jTextField4.setText(cousre3);
+            String cousre4 = in.next();
             jTextField5.setText(cousre4);
-           String average = in.next();
+            String average = in.next();
             jTextField7.setText(String.valueOf(average));
             String comment1 = in.next();
             jTextArea6.setText(comment1);
@@ -501,94 +572,123 @@ num4 = Float.parseFloat(jTextField9.getText());
             jTextArea1.setText(comment3);
             String comment4 = in.next();
             jTextArea5.setText(comment4);
-            
-    } catch (FileNotFoundException ex) {
-    }
-       
-    }//GEN-LAST:event_jButton3ActionPerformed
 
+        } catch (FileNotFoundException ex) {
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
     int num1;
-int num2;
-int num3;
-int num4;
-String course1,course2,course3,course4;
-String comment1,comment2,comment3,comment4;
+    int num2;
+    int num3;
+    int num4;
+    String course1, course2, course3, course4;
+    String comment1, comment2, comment3, comment4;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       // First we need to determine the last name and name to make a file with that certain name 
+        // First we need to determine the last name and name to make a file with that certain name 
         // this will make it easier to find 
-        String lastname = (jTextField2.getText());  
-        String name = (jTextField1.getText());  
-        String names = (name+" "+lastname);
-  // Now we make that certain file inorder to store information
+        
+
+        
+        String lastname = (jTextField2.getText());
+        String name = (jTextField1.getText());
+        String names = (name + " " + lastname);
+        
+        // Now we make that certain file inorder to store information
+        
         String outFileName = names;
-              File outFile = new File(outFileName);
+        File outFile = new File(outFileName);
+        
+        if (new File(outFileName).exists() && !new File(outFileName).isDirectory()) {} 
+        
+        else {
+        
+            jTextArea2.append(name+" "+lastname);
+            
+            jTextArea2.append("\n");
+            outdata.println(name+" "+lastname);
+            
         try (PrintStream out = new PrintStream(outFile)) {
-            // we need to set a variable for each of the textfield
-      if(!jTextField10.getText().isEmpty()){
-        num1 = Integer.parseInt(jTextField10.getText());
-}else{
-          num1 = 0;
-      }
-      if(!jTextField3.getText().isEmpty()){
-        num2 = Integer.parseInt(jTextField3.getText());
-}else{
-          num2 = 0;
-      }
-         if(!jTextField8.getText().isEmpty()){
-        num3 = Integer.parseInt(jTextField8.getText());
-}else{
-          num3 = 0;
-      }
- if(!jTextField9.getText().isEmpty()){
-        num4 = Integer.parseInt(jTextField9.getText());
-}else{
-          num4 = 0;
-      }
- if(!jTextField6.getText().isEmpty()){
-     course1 = (jTextField6.getText());
- }else{
-     course1 = null;
- }
- if(!jTextField11.getText().isEmpty()){
-     course2 = (jTextField11.getText());
- }else{
-     course2 = null;
- }
-  if(!jTextField4.getText().isEmpty()){
-     course3 = (jTextField3.getText());
- }else{
-     course3 = null;
- }
-  if(!jTextField5.getText().isEmpty()){
-     course4 = (jTextField5.getText());
- }else{
-     course4 = null;
- }
-  if(!jTextArea6.getText().isEmpty()){
-     comment1 = (jTextArea6.getText());
- }else{
-     comment1 = null;
-  }
-          if(!jTextArea7.getText().isEmpty()){
-     comment2 = (jTextArea7.getText());
-     
- }else{
-     comment2 = null;
-          }
-          if(!jTextArea1.getText().isEmpty()){
-     comment3 = (jTextArea1.getText());
- }else{
-     comment3 = null;
-          }
-      if(!jTextArea5.getText().isEmpty()){
-     comment4 = (jTextArea5.getText());
- }else{
-     comment4 = null;
-      }  
-      // Now we print all of it      
+            
+            // we need to check if the textfield has anything in it, if it doesnt then set it as null or 0
+            
+            if (!jTextField10.getText().isEmpty()) {
+                num1 = Integer.parseInt(jTextField10.getText());
+            } else {
+                num1 = 0;
+            }
+            
+            if (!jTextField3.getText().isEmpty()) {
+                num2 = Integer.parseInt(jTextField3.getText());
+            } else {
+                num2 = 0;
+            }
+            
+            if (!jTextField8.getText().isEmpty()) {
+                num3 = Integer.parseInt(jTextField8.getText());
+            } else {
+                num3 = 0;
+            }
+            
+            
+            if (!jTextField9.getText().isEmpty()) {
+                num4 = Integer.parseInt(jTextField9.getText());
+            } else {
+                num4 = 0;
+            }
+            
+            if (!jTextField6.getText().isEmpty()) {
+                course1 = (jTextField6.getText());
+            } else {
+                course1 = null;
+            }
+            
+            if (!jTextField11.getText().isEmpty()) {
+                course2 = (jTextField11.getText());
+            } else {
+                course2 = null;
+            }
+            
+            if (!jTextField4.getText().isEmpty()) {
+                course3 = (jTextField3.getText());
+            } else {
+                course3 = null;
+            }
+            
+            if (!jTextField5.getText().isEmpty()) {
+                course4 = (jTextField5.getText());
+            } else {
+                course4 = null;
+            }
+            
+            if (!jTextArea6.getText().isEmpty()) {
+                comment1 = (jTextArea6.getText());
+            } else {
+                comment1 = null;
+            }
+            
+            if (!jTextArea7.getText().isEmpty()) {
+                comment2 = (jTextArea7.getText());
+
+            } else {
+                comment2 = null;
+            }
+            
+            if (!jTextArea1.getText().isEmpty()) {
+                comment3 = (jTextArea1.getText());
+            } else {
+                comment3 = null;
+            }
+            
+            if (!jTextArea5.getText().isEmpty()) {
+                comment4 = (jTextArea5.getText());
+            } else {
+                comment4 = null;
+            }
+            
+            // Now we print all of it      
             out.println(lastname);
             out.println(name);
-           out.println(num1);            
+            out.println(num1);
             out.println(num2);
             out.println(num3);
             out.println(num4);
@@ -596,17 +696,147 @@ String comment1,comment2,comment3,comment4;
             out.println(course2);
             out.println(course3);
             out.println(course4);
-            out.println((num1+num2+num3+num4)/4);
+            out.println((num1 + num2 + num3 + num4) / 4);
             out.println(comment1);
             out.println(comment2);
             out.println(comment3);
-           out.println(comment4);
+            out.println(comment4);
+            
         } catch (FileNotFoundException ex) {
         }
 
-
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-                                                                        
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // make a new jFrame
+        jFrame1.show(true);
+        quickFix(jFrame1);
+        jFrame1.setSize(1100, 850);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension dim = tk.getScreenSize();
+        int xPos = (dim.width / 2) - (this.getWidth() / 2);
+        int yPos = (dim.height / 2) - (this.getHeight() / 2);
+        jFrame1.setLocationRelativeTo(null);
+        jFrame1.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       String lastname = (jTextField2.getText());
+        String name = (jTextField1.getText());
+        String names = (name + " " + lastname);// Currently being built !!!
+        File file = new File(names);
+                file.delete();
+                System.out.println("The file has been deleted ");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // setting up a file name that would be appropriate and efficent
+        String lastname = (jTextField2.getText());
+        String name = (jTextField1.getText());
+        String names = (name + " " + lastname);
+        // using that certain file now to store new information
+         String outFileName = names;
+        File outFile = new File(outFileName);
+        try (PrintStream out = new PrintStream(outFile)) {
+            
+            // we need to check if the textfield has anything in it, if it doesnt then set it as null or 0
+            
+            if (!jTextField10.getText().isEmpty()) {
+                num1 = Integer.parseInt(jTextField10.getText());
+            } else {
+                num1 = 0;
+            }
+            
+            if (!jTextField3.getText().isEmpty()) {
+                num2 = Integer.parseInt(jTextField3.getText());
+            } else {
+                num2 = 0;
+            }
+            
+            if (!jTextField8.getText().isEmpty()) {
+                num3 = Integer.parseInt(jTextField8.getText());
+            } else {
+                num3 = 0;
+            }
+            
+            
+            if (!jTextField9.getText().isEmpty()) {
+                num4 = Integer.parseInt(jTextField9.getText());
+            } else {
+                num4 = 0;
+            }
+            
+            if (!jTextField6.getText().isEmpty()) {
+                course1 = (jTextField6.getText());
+            } else {
+                course1 = null;
+            }
+            
+            if (!jTextField11.getText().isEmpty()) {
+                course2 = (jTextField11.getText());
+            } else {
+                course2 = null;
+            }
+            
+            if (!jTextField4.getText().isEmpty()) {
+                course3 = (jTextField3.getText());
+            } else {
+                course3 = null;
+            }
+            
+            if (!jTextField5.getText().isEmpty()) {
+                course4 = (jTextField5.getText());
+            } else {
+                course4 = null;
+            }
+            
+            if (!jTextArea6.getText().isEmpty()) {
+                comment1 = (jTextArea6.getText());
+            } else {
+                comment1 = null;
+            }
+            
+            if (!jTextArea7.getText().isEmpty()) {
+                comment2 = (jTextArea7.getText());
+
+            } else {
+                comment2 = null;
+            }
+            
+            if (!jTextArea1.getText().isEmpty()) {
+                comment3 = (jTextArea1.getText());
+            } else {
+                comment3 = null;
+            }
+            
+            if (!jTextArea5.getText().isEmpty()) {
+                comment4 = (jTextArea5.getText());
+            } else {
+                comment4 = null;
+            }
+            
+            // Now we print all of the new information into the file   
+            out.println(lastname);
+            out.println(name);
+            out.println(num1);
+            out.println(num2);
+            out.println(num3);
+            out.println(num4);
+            out.println(course1);
+            out.println(course2);
+            out.println(course3);
+            out.println(course4);
+            out.println((num1 + num2 + num3 + num4) / 4);
+            out.println(comment1);
+            out.println(comment2);
+            out.println(comment3);
+            out.println(comment4);
+            
+        } catch (FileNotFoundException ex) {
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -635,11 +865,15 @@ String comment1,comment2,comment3,comment4;
         //</editor-fold>
 
         /* Create and display the form */
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RP().setVisible(true);
-                
+                try {
+                    new RP().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(RP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         });
     }
@@ -648,6 +882,9 @@ String comment1,comment2,comment3,comment4;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -660,6 +897,7 @@ String comment1,comment2,comment3,comment4;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -667,7 +905,9 @@ String comment1,comment2,comment3,comment4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextArea jTextArea7;
@@ -685,4 +925,8 @@ String comment1,comment2,comment3,comment4;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
+    private void quickFix(JFrame h) {
+        h.setLocationRelativeTo(null);
+        h.setVisible(true);
+    }
 }
