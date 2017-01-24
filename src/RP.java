@@ -73,11 +73,11 @@ File database;
 
     }
      private void loadFiles() {
-        if (indata.hasNext()) {
-            jTextArea2.append(indata.next());
-        } else {
-            System.out.println("no student files in database");
-        }
+        while(indata.hasNext()) {
+            jTextArea2.append(indata.nextLine()+"\n");
+            
+        } 
+        
     }
 
 
@@ -649,7 +649,7 @@ File database;
             }
             
             if (!jTextField4.getText().isEmpty()) {
-                course3 = (jTextField3.getText());
+                course3 = (jTextField4.getText());
             } else {
                 course3 = null;
             }
@@ -722,9 +722,8 @@ File database;
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String lastname = (jTextField2.getText());
-        String name = (jTextField1.getText());
-        String names = (name + " " + lastname);// Currently being built !!!
+       String names = (jTextField12.getText());
+        // Currently being built !!!
         File file = new File(names);
                 file.delete();
                 System.out.println("The file has been deleted ");
