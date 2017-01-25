@@ -91,7 +91,7 @@ File database;
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
-        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -137,9 +137,9 @@ File database;
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Swagpic.png"))); // NOI18N
-        jLabel20.setText("jLabel20");
-        jFrame1.getContentPane().add(jLabel20, java.awt.BorderLayout.PAGE_START);
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpbutton.png"))); // NOI18N
+        jLabel21.setText("jLabel21");
+        jFrame1.getContentPane().add(jLabel21, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -538,11 +538,12 @@ File database;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             String search = (jTextField12.getText());
-
+// use file io to retreive the saved information
             String inFileName = search;
             File inFile = new File(inFileName);
             Scanner in = new Scanner(inFile);
             String lastnum = in.next();
+            // printing it back into the proper text fields
             jTextField2.setText(lastnum);
             String name = in.next();
             jTextField1.setText(name);
@@ -577,6 +578,7 @@ File database;
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+   // Setting variables 
     int num1;
     int num2;
     int num3;
@@ -597,7 +599,7 @@ File database;
         
         String outFileName = names;
         File outFile = new File(outFileName);
-        
+        // Printing out the persons name on the data base
         if (new File(outFileName).exists() && !new File(outFileName).isDirectory()) {} 
         
         else {
@@ -712,7 +714,8 @@ File database;
         // make a new jFrame
         jFrame1.show(true);
         quickFix(jFrame1);
-        jFrame1.setSize(1100, 850);
+        
+        jFrame1.setSize(1500, 850);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
         int xPos = (dim.width / 2) - (this.getWidth() / 2);
@@ -727,6 +730,7 @@ File database;
         File file = new File(names);
                 file.delete();
                 System.out.println("The file has been deleted ");
+                                     
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -832,6 +836,9 @@ File database;
             out.println(comment3);
             out.println(comment4);
             
+            String outFileNames = "database";
+        File outFiles = new File(outFileNames);
+            out.println(jTextArea2);
         } catch (FileNotFoundException ex) {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -896,7 +903,7 @@ File database;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
